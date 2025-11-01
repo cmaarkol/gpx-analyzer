@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX Route Analyzer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗺️ GPX Route Analyzer</h1>
+            <p class="subtitle">Upload your GPX file to analyze route statistics and visualize elevation profile</p>
+        </header>
+
+        <div class="upload-section">
+            <label for="gpx-upload" class="upload-label">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Click to upload GPX file</span>
+                <input type="file" id="gpx-upload" accept=".gpx" />
+            </label>
+        </div>
+
+        <div id="content" class="hidden">
+            <!-- Left Column -->
+            <div class="column-left">
+                <div id="map-header">
+                    <div id="gpx-filename" style="display: none;">
+                        <h3 id="filename-display" style="margin: 0 0 0.5rem 0; cursor: pointer;">Route Name</h3>
+                        <input type="text" id="filename-edit" style="display: none; width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 1.1rem;" />
+                    </div>
+                </div>
+                <div id="map"></div>
+                <div id="elevation-chart">
+                    <h3>Elevation Profile</h3>
+                    <canvas id="elevationProfile"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="column-right">
+                <div id="stats">
+                    <div id="elevation-source" class="elevation-source-banner">
+                        <span style="font-size: 1.2rem; margin-right: 0.5rem;">⏳</span>
+                        <span style="font-weight: 600;">Elevation Source:</span>
+                        <span style="margin-left: 0.5rem;">Loading...</span>
+                    </div>
+
+                    <div class="speed-controls">
+                        <div class="control-group">
+                            <label for="flat-speed">Flat Speed (km/h):</label>
+                            <input type="number" id="flat-speed" value="5" min="1" max="20" step="0.5" />
+                        </div>
+                        <div class="control-group">
+                            <label for="climb-speed">Climb Rate (m/h):</label>
+                            <input type="number" id="climb-speed" value="300" min="50" max="1000" step="50" />
+                        </div>
+                        <button id="recalculate" class="btn-primary">Recalculate Time</button>
+                    </div>
+
+                    <h3>Route Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-distance">-</div>
+                            <div class="stat-label">Total Distance</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-elevation-gain">-</div>
+                            <div class="stat-label">Elevation Gain</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-elevation-loss">-</div>
+                            <div class="stat-label">Elevation Loss</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="estimated-time">-</div>
+                            <div class="stat-label">Estimated Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="waypoints-container">
+                    <h3>Waypoints</h3>
+                    <p style="color: #666; margin: 0 0 1rem 0; font-size: 0.9rem; padding: 0 1rem;">
+                        💡 <strong>Tip:</strong> Click on the <strong>map</strong> or <strong>elevation chart</strong> to add custom waypoints. 
+                        Hover over rows to highlight them on the map and chart.
+                    </p>
+                    <div class="waypoints-actions">
+                        <button id="reverse-route" class="btn-secondary">Reverse Route</button>
+                        <button id="reset-route" class="btn-secondary" title="Reset to original GPX file">🔄 Reset</button>
+                        <button id="export-gpx" class="btn-secondary" title="Download GPX file with route and waypoints">
+                            📁 GPX
+                        </button>
+                        <button id="export-excel" class="btn-secondary" title="Download Excel/CSV file with waypoint data">
+                            📊 Excel
+                        </button>
+                    </div>
+                    <table id="waypoints">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Segment Distance (km)</th>
+                                <th>Elevation (m)</th>
+                                <th>Cumul. Distance (km)</th>
+                                <th>Cumul. Gain / Loss (m)</th>
+                                <th>Segment Time</th>
+                                <th>Cumul. Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Waypoints will be added here dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/geotiff@2.0.7/dist-browser/geotiff.js"></script>
+    <script src="utils.js"></script>
+    <script src="elevation.js"></script>
+    <script src="route.js"></script>
+    <script src="ui.js"></script>
+    <script src="events.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

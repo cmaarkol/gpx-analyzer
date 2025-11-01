@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPX Route Analyzer Sample">
+  <metadata>
+    <name>Sample Mountain Hike</name>
+    <desc>A sample GPX file for testing the analyzer</desc>
+  </metadata>
+  <trk>
+    <name>Sample Route</name>
+    <trkseg>
+      <trkpt lat="22.2800" lon="114.1580">
+        <ele>50</ele>
+      </trkpt>
+      <trkpt lat="22.2810" lon="114.1590">
+        <ele>75</ele>
+      </trkpt>
+      <trkpt lat="22.2820" lon="114.1600">
+        <ele>110</ele>
+      </trkpt>
+      <trkpt lat="22.2830" lon="114.1610">
+        <ele>155</ele>
+      </trkpt>
+      <trkpt lat="22.2840" lon="114.1620">
+        <ele>210</ele>
+      </trkpt>
+      <trkpt lat="22.2850" lon="114.1630">
+        <ele>275</ele>
+      </trkpt>
+      <trkpt lat="22.2860" lon="114.1640">
+        <ele>340</ele>
+      </trkpt>
+      <trkpt lat="22.2870" lon="114.1650">
+        <ele>395</ele>
+      </trkpt>
+      <trkpt lat="22.2880" lon="114.1660">
+        <ele>440</ele>
+      </trkpt>
+      <trkpt lat="22.2890" lon="114.1670">
+        <ele>475</ele>
+      </trkpt>
+      <trkpt lat="22.2900" lon="114.1680">
+        <ele>495</ele>
+      </trkpt>
+      <trkpt lat="22.2910" lon="114.1690">
+        <ele>500</ele>
+      </trkpt>
+      <trkpt lat="22.2920" lon="114.1700">
+        <ele>480</ele>
+      </trkpt>
+      <trkpt lat="22.2930" lon="114.1710">
+        <ele>445</ele>
+      </trkpt>
+      <trkpt lat="22.2940" lon="114.1720">
+        <ele>400</ele>
+      </trkpt>
+      <trkpt lat="22.2950" lon="114.1730">
+        <ele>350</ele>
+      </trkpt>
+      <trkpt lat="22.2960" lon="114.1740">
+        <ele>295</ele>
+      </trkpt>
+      <trkpt lat="22.2970" lon="114.1750">
+        <ele>240</ele>
+      </trkpt>
+      <trkpt lat="22.2980" lon="114.1760">
+        <ele>185</ele>
+      </trkpt>
+      <trkpt lat="22.2990" lon="114.1770">
+        <ele>130</ele>
+      </trkpt>
+      <trkpt lat="22.3000" lon="114.1780">
+        <ele>80</ele>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>

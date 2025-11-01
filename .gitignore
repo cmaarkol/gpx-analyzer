@@ -1,0 +1,21 @@
+# SRTM elevation data files (large binary files)
+srtm_tiles/*.tif
+srtm_tiles/*.hgt
+
+# But keep the directory
+!srtm_tiles/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
