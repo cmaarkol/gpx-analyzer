@@ -32,10 +32,6 @@ For Hong Kong specifically, download these two SRTM tiles:
 - **N22E113.tif** (Western Hong Kong)
 - **N22E114.tif** (Eastern Hong Kong & most territory)
 
-**Download Links**:
-- [N22E113](https://e4ftl01.cr.usgs.gov//DP104/SRTM/SRTMGL1.003/2000.02.11/N22E113.SRTMGL1.hgt.zip)
-- [N22E114](https://e4ftl01.cr.usgs.gov//DP104/SRTM/SRTMGL1.003/2000.02.11/N22E114.SRTMGL1.hgt.zip)
-
 **Note**: These are .hgt.zip files - extract them to get .tif files, or use conversion tools if needed.
 
 #### Installation
