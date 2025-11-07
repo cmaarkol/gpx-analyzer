@@ -21,9 +21,40 @@
                     <polyline points="17 8 12 3 7 8"></polyline>
                     <line x1="12" y1="3" x2="12" y2="15"></line>
                 </svg>
-                <span>Click to upload GPX file</span>
-                <input type="file" id="gpx-upload" accept=".gpx" />
+                <span>Click to upload GPX files (multiple supported)</span>
+                <input type="file" id="gpx-upload" accept=".gpx" multiple />
             </label>
+        </div>
+
+        <div id="gpx-files-section" class="hidden">
+            <div class="gpx-files-list">
+                <h3>Loaded GPX Files</h3>
+                <div id="gpx-files-container"></div>
+            </div>
+            <div class="gpx-linking-section" id="gpx-linking-section" style="display: none;">
+                <h3>Link GPX Files</h3>
+                <div class="linking-controls">
+                    <div class="linking-group">
+                        <label>First GPX File:</label>
+                        <select id="gpx-file-1"></select>
+                        <label>Connection Point:</label>
+                        <select id="gpx-point-1">
+                            <option value="start">Start</option>
+                            <option value="end">End</option>
+                        </select>
+                    </div>
+                    <div class="linking-group">
+                        <label>Second GPX File:</label>
+                        <select id="gpx-file-2"></select>
+                        <label>Connection Point:</label>
+                        <select id="gpx-point-2">
+                            <option value="start">Start</option>
+                            <option value="end">End</option>
+                        </select>
+                    </div>
+                    <button id="link-gpx-files" class="btn-primary">Link GPX Files</button>
+                </div>
+            </div>
         </div>
 
         <div id="content" class="hidden">
@@ -132,6 +163,7 @@
     <script src="route.js"></script>
     <script src="ui.js"></script>
     <script src="events.js"></script>
+    <script src="multi-gpx.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

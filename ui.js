@@ -183,12 +183,7 @@ function renderElevationChart() {
                         annotations: waypointAnnotations
                     },
                     legend: {
-                        display: false,
-                        labels: {
-                            generateLabels: function() {
-                                return [];
-                            }
-                        }
+                        display: false
                     },
                     tooltip: {
                         callbacks: {
@@ -228,7 +223,11 @@ function renderElevationChart() {
                     mode: 'index'
                 },
                 onHover: function(event, activeElements) {
-                    const canvasPosition = Chart.helpers.getRelativePosition(event, elevationChart);
+                    const rect = elevationChart.canvas.getBoundingClientRect();
+                    const canvasPosition = {
+                        x: event.clientX - rect.left,
+                        y: event.clientY - rect.top
+                    };
                     const xScale = elevationChart.scales.x;
 
                     if (xScale && canvasPosition.x >= 0 && canvasPosition.x <= elevationChart.width) {
@@ -245,7 +244,12 @@ function renderElevationChart() {
                     const xScale = elevationChart.scales.x;
                     if (!xScale) return;
 
-                    const canvasPosition = Chart.helpers.getRelativePosition(event, elevationChart);
+                    const rect = elevationChart.canvas.getBoundingClientRect();
+                    const canvasPosition = {
+                        x: event.clientX - rect.left,
+                        y: event.clientY - rect.top
+                    };
+
                     let distance = xScale.getValueForPixel(canvasPosition.x);
                     if (!isFinite(distance)) return;
 

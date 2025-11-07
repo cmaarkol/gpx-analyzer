@@ -1,15 +1,20 @@
 // events.js - Event handlers for user interactions
 
-function handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+async function handleMultipleGPXUpload(event) {
+    const files = event.target.files;
+    if (files.length === 0) return;
 
-    const reader = new FileReader();
-    reader.onload = async function(e) {
-        const gpxContent = e.target.result;
-        await parseGPX(gpxContent, file.name);
-    };
-    reader.readAsText(file);
+    loadedGPXFiles = []; // Clear previous files
+    
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const gpxContent = e.target.result;
+            await parseGPXForMultiUpload(gpxContent, file.name);
+        };
+        reader.readAsText(file);
+    }
 }
 
 async function parseGPX(gpxContent, filename) {
@@ -89,6 +94,33 @@ async function parseGPX(gpxContent, filename) {
     renderWaypointsTable();
 }
 
+function handleResetRoute() {
+    if (!originalRouteData) {
+        alert('No original route data available to reset to.');
+        return;
+    }
+
+    // Restore the original route data
+    routeData = {
+        points: originalRouteData.points.map(p => ({ ...p })),
+        waypoints: originalRouteData.waypoints.map(wp => ({ ...wp })),
+        totalDistance: originalRouteData.totalDistance,
+        totalGain: originalRouteData.totalGain,
+        totalLoss: originalRouteData.totalLoss
+    };
+
+    // Reset other state variables that might have been modified
+    activeWaypointIndex = null;
+    customWaypoints = [];
+    customWaypointIdCounter = 1;
+
+    // Update UI
+    updateStatistics();
+    renderMap(true); // Fit to bounds when resetting
+    renderElevationChart();
+    renderWaypointsTable();
+}
+
 function handleReverseRoute() {
     if (!routeData) {
         return;
@@ -124,32 +156,6 @@ function handleReverseRoute() {
     renderWaypointsTable();
 }
 
-function handleResetRoute() {
-    if (!originalRouteData) {
-        alert('No original route data available to reset to.');
-        return;
-    }
-
-    // Restore the original route data
-    routeData = {
-        points: originalRouteData.points.map(p => ({ ...p })),
-        waypoints: originalRouteData.waypoints.map(wp => ({ ...wp })),
-        totalDistance: originalRouteData.totalDistance,
-        totalGain: originalRouteData.totalGain,
-        totalLoss: originalRouteData.totalLoss
-    };
-
-    // Reset other state variables that might have been modified
-    activeWaypointIndex = null;
-    customWaypoints = [];
-    customWaypointIdCounter = 1;
-
-    // Update UI
-    updateStatistics();
-    renderMap(true); // Fit to bounds when resetting
-    renderElevationChart();
-    renderWaypointsTable();
-}
 
 function deleteWaypoint(index) {
     const waypoint = routeData.waypoints[index];

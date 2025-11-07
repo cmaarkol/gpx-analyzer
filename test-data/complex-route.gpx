@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPX Route Analyzer Test Suite">
+  <metadata>
+    <name>Complex Mountain Route</name>
+    <desc>A challenging route with significant elevation changes for testing elevation profiles and time calculations</desc>
+    <time>2025-01-01T08:00:00Z</time>
+  </metadata>
+
+  <trk>
+    <name>Complex Mountain Track</name>
+    <desc>Mountain route with elevation challenges</desc>
+    <trkseg>
+      <!-- Starting at lower elevation -->
+      <trkpt lat="22.2680" lon="114.1430">
+        <ele>50.0</ele>
+        <time>2025-01-01T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2700" lon="114.1450">
+        <ele>60.0</ele>
+        <time>2025-01-01T08:02:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2720" lon="114.1470">
+        <ele>80.0</ele>
+        <time>2025-01-01T08:04:00Z</time>
+      </trkpt>
+
+      <!-- Steep climb -->
+      <trkpt lat="22.2740" lon="114.1490">
+        <ele>120.0</ele>
+        <time>2025-01-01T08:08:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2760" lon="114.1510">
+        <ele>160.0</ele>
+        <time>2025-01-01T08:12:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2780" lon="114.1530">
+        <ele>200.0</ele>
+        <time>2025-01-01T08:16:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2800" lon="114.1550">
+        <ele>240.0</ele>
+        <time>2025-01-01T08:20:00Z</time>
+      </trkpt>
+
+      <!-- Ridge walking -->
+      <trkpt lat="22.2820" lon="114.1570">
+        <ele>250.0</ele>
+        <time>2025-01-01T08:25:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2840" lon="114.1590">
+        <ele>255.0</ele>
+        <time>2025-01-01T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2860" lon="114.1610">
+        <ele>260.0</ele>
+        <time>2025-01-01T08:35:00Z</time>
+      </trkpt>
+
+      <!-- Peak -->
+      <trkpt lat="22.2880" lon="114.1630">
+        <ele>300.0</ele>
+        <time>2025-01-01T08:40:00Z</time>
+      </trkpt>
+
+      <!-- Descent -->
+      <trkpt lat="22.2900" lon="114.1650">
+        <ele>280.0</ele>
+        <time>2025-01-01T08:45:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2920" lon="114.1670">
+        <ele>250.0</ele>
+        <time>2025-01-01T08:50:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2940" lon="114.1690">
+        <ele>200.0</ele>
+        <time>2025-01-01T08:55:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2960" lon="114.1710">
+        <ele>150.0</ele>
+        <time>2025-01-01T09:00:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2980" lon="114.1730">
+        <ele>100.0</ele>
+        <time>2025-01-01T09:05:00Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+
+  <wpt lat="22.2680" lon="114.1430">
+    <ele>50.0</ele>
+    <name>Trailhead</name>
+    <desc>Starting point of the mountain route</desc>
+    <type>Start</type>
+  </wpt>
+
+  <wpt lat="22.2780" lon="114.1530">
+    <ele>200.0</ele>
+    <name>Climb Start</name>
+    <desc>Beginning of the steep climb section</desc>
+    <type>Waypoint</type>
+  </wpt>
+
+  <trk>
+    <name>Complex Mountain Track</name>
+    <desc>Mountain route with elevation challenges</desc>
+    <trkseg>
+      <!-- Starting at lower elevation -->
+      <trkpt lat="22.2680" lon="114.1430">
+        <ele>50.0</ele>
+        <time>2025-01-01T08:00:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2700" lon="114.1450">
+        <ele>60.0</ele>
+        <time>2025-01-01T08:02:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2720" lon="114.1470">
+        <ele>80.0</ele>
+        <time>2025-01-01T08:04:00Z</time>
+      </trkpt>
+
+      <!-- Steep climb -->
+      <trkpt lat="22.2740" lon="114.1490">
+        <ele>120.0</ele>
+        <time>2025-01-01T08:08:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2760" lon="114.1510">
+        <ele>160.0</ele>
+        <time>2025-01-01T08:12:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2780" lon="114.1530">
+        <ele>200.0</ele>
+        <time>2025-01-01T08:16:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2800" lon="114.1550">
+        <ele>240.0</ele>
+        <time>2025-01-01T08:20:00Z</time>
+      </trkpt>
+
+      <!-- Ridge walking -->
+      <trkpt lat="22.2820" lon="114.1570">
+        <ele>250.0</ele>
+        <time>2025-01-01T08:25:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2840" lon="114.1590">
+        <ele>255.0</ele>
+        <time>2025-01-01T08:30:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2860" lon="114.1610">
+        <ele>260.0</ele>
+        <time>2025-01-01T08:35:00Z</time>
+      </trkpt>
+
+      <!-- Peak -->
+      <trkpt lat="22.2880" lon="114.1630">
+        <ele>300.0</ele>
+        <time>2025-01-01T08:40:00Z</time>
+      </trkpt>
+
+      <!-- Descent -->
+      <trkpt lat="22.2900" lon="114.1650">
+        <ele>280.0</ele>
+        <time>2025-01-01T08:45:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2920" lon="114.1670">
+        <ele>250.0</ele>
+        <time>2025-01-01T08:50:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2940" lon="114.1690">
+        <ele>200.0</ele>
+        <time>2025-01-01T08:55:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2960" lon="114.1710">
+        <ele>150.0</ele>
+        <time>2025-01-01T09:00:00Z</time>
+      </trkpt>
+      <trkpt lat="22.2980" lon="114.1730">
+        <ele>100.0</ele>
+        <time>2025-01-01T09:05:00Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+
+  <wpt lat="22.2880" lon="114.1630">
+    <ele>300.0</ele>
+    <name>Summit</name>
+    <desc>Peak of the mountain route</desc>
+    <type>Waypoint</type>
+  </wpt>
+
+  <wpt lat="22.2980" lon="114.1730">
+    <ele>100.0</ele>
+    <name>Trail End</name>
+    <desc>End point of the mountain route</desc>
+    <type>End</type>
+  </wpt>
+
+  <wpt lat="22.2800" lon="114.1550">
+    <ele>240.0</ele>
+    <name>Viewpoint</name>
+    <desc>Scenic viewpoint along the route</desc>
+    <type>Waypoint</type>
+  </wpt>
+</gpx>

@@ -56,32 +56,47 @@ For Hong Kong specifically, download these two SRTM tiles:
 
 ## 🛠️ How to Use
 
+### 🎯 Core Functionality
+- 📤 **File Upload**: Drag-and-drop GPX file upload with instant processing
+- 🗺️ **Interactive Map**: Full-screen route visualization using OpenStreetMap tiles
+- 📊 **Elevation Profile**: Dynamic Chart.js visualization with waypoint annotations
+- 🏔️ **Smart Elevation System**: Local SRTM data with automatic API fallbacks
+- 📏 **Advanced Statistics**: Distance, elevation gain/loss, customizable time estimates
+- 📍 **Intelligent Waypoints**: Start/end detection, GPX waypoint support, interactive creation
+- ✏️ **Route Drawing**: Draw new route segments directly on the map
+- 🔧 **Route Editing**: Modify existing route geometry (basic implementation)
+
 ### Basic Workflow
 1. **Upload GPX**: Click upload area to upload GPX file
 2. **View Route**: Interactive map shows complete route with waypoints
 3. **Analyze Elevation**: Chart displays elevation profile with clickable waypoints
 4. **Customize Settings**: Adjust speeds for accurate time calculations
-5. **Modify Route**: Add/delete waypoints, reverse route, or reset to original
+5. **Modify Route**: Add/delete waypoints, draw new segments, reverse route, or reset to original
 6. **Export Data**: Download modified GPX or waypoint CSV/Excel files
 
 ### Advanced Features
 
-#### Route Title Management
-- **Display**: GPX filename appears above map after upload
-- **Editing**: Click filename to rename route
-- **Controls**: Enter to save, Escape to cancel, click outside to save
+### 🎮 Interactive Features
+- **Renamable Route Titles**: Click to edit GPX filenames displayed above the map
+- **Waypoint Management**: Add/delete waypoints by clicking map or elevation chart
+- **Route Modification**: Reverse routes and reset to original GPX data
+- **Route Drawing Mode**: ✏️ Click on map to draw new route segments from scratch
+- **Route Editing Mode**: 🔧 Edit existing route geometry (basic implementation)
+- **Real-time Synchronization**: Hover effects between map, chart, and waypoint table
+- **Export Options**: Download modified routes as GPX or waypoint data as CSV/Excel
 
-#### Waypoint Operations
-- **Add Waypoints**: Click map or elevation chart at desired locations
-- **Delete Waypoints**: Use trash icon (🗑️) for any waypoint including start/end
-- **Edit Names**: Click waypoint name in table to rename
-- **Smart Truncation**: Deleting start/end waypoints automatically shortens route
-- **Interactive Highlighting**: Hover table rows to highlight on map and chart
+#### Route Drawing & Editing
+- **Draw New Routes**: Click "✏️ Draw Route" to enter drawing mode, then click on the map to create new route segments
+- **Edit Existing Routes**: Click "🔧 Edit Route" to modify existing route geometry (basic implementation)
+- **Visual Feedback**: Drawn routes appear as dashed red lines until finalized
+- **Integration**: Drawn segments are automatically added to your route with recalculated statistics
+- **Elevation Handling**: New route segments get elevation data from available sources
 
-#### Route Modifications
-- **Reverse Route**: Flips route direction and recalculates all data
-- **Reset to Original**: Restores exact uploaded GPX data, removing all modifications
-- **Automatic Recalculation**: All statistics update instantly after changes
+**Route Drawing Workflow**:
+1. Click "✏️ Draw Route" button (turns green when active)
+2. Click points on the map to create your route
+3. Click "✅ Finish Drawing" to integrate the route
+4. Elevation data is fetched and statistics recalculated
 
 #### Speed & Time Calculations
 The app uses a realistic hiking model combining horizontal and vertical movement:

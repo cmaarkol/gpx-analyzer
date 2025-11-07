@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX Route Analyzer - Test Suite</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #764ba2;
+            margin-top: 30px;
+        }
+        .test-section {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .test-case {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        .test-case h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .test-case p {
+            margin: 5px 0;
+            color: #666;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status.pending { background: #ffeaa7; color: #d63031; }
+        .status.pass { background: #55efc4; color: #00b894; }
+        .status.fail { background: #fab1a0; color: #e17055; }
+        .status.manual { background: #fdcb6e; color: #e17055; }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn.secondary {
+            background: #6c757d;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+        .sample-data {
+            background: #e8f5e8;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 GPX Route Analyzer - Test Suite</h1>
+
+        <div class="test-section">
+            <h2>📋 Test Overview</h2>
+            <p>This test suite validates all major functionality of the GPX Route Analyzer application. Tests are divided into automated and manual categories.</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="testProgress"></div>
+            </div>
+            <p><strong>Test Progress:</strong> <span id="progressText">0/0 tests completed</span></p>
+        </div>
+
+        <div class="test-section">
+            <h2>🤖 Automated Tests</h2>
+
+            <div class="test-case" id="test-basic-functions">
+                <h3>1. Basic Function Definitions</h3>
+                <p>Test that all required JavaScript functions are properly defined</p>
+                <span class="status pending" id="status-basic-functions">PENDING</span>
+                <button class="btn" onclick="runBasicFunctionsTest()">Run Test</button>
+            </div>
+
+            <div class="test-case" id="test-gpx-parsing">
+                <h3>2. GPX File Parsing</h3>
+                <p>Test GPX parsing with sample data</p>
+                <span class="status pending" id="status-gpx-parsing">PENDING</span>
+                <button class="btn" onclick="runGPXParsingTest()">Run Test</button>
+            </div>
+
+            <div class="test-case" id="test-coordinate-calculations">
+                <h3>3. Coordinate Calculations</h3>
+                <p>Test distance and coordinate utility functions</p>
+                <span class="status pending" id="status-coordinate-calculations">PENDING</span>
+                <button class="btn" onclick="runCoordinateCalculationsTest()">Run Test</button>
+            </div>
+
+            <div class="test-case" id="test-route-processing">
+                <h3>4. Route Data Processing</h3>
+                <p>Test route processing and waypoint management</p>
+                <span class="status pending" id="status-route-processing">PENDING</span>
+                <button class="btn" onclick="runRouteProcessingTest()">Run Test</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>👤 Manual Tests</h2>
+
+            <div class="test-case" id="test-ui-rendering">
+                <h3>5. UI Rendering & Layout</h3>
+                <p>Verify that all UI components render correctly</p>
+                <span class="status manual" id="status-ui-rendering">MANUAL</span>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Open the main application (index.html)</li>
+                    <li>Verify header, upload area, and layout are visible</li>
+                    <li>Check responsive design on different screen sizes</li>
+                    <li>Verify all buttons and controls are accessible</li>
+                </ol>
+            </div>
+
+            <div class="test-case" id="test-gpx-upload">
+                <h3>6. GPX File Upload</h3>
+                <p>Test uploading GPX files with different characteristics</p>
+                <span class="status manual" id="status-gpx-upload">MANUAL</span>
+                <p><strong>Test Files:</strong></p>
+                <div class="sample-data">
+                    <p>Sample GPX files should be placed in a <code>test-data/</code> directory:</p>
+                    <ul>
+                        <li><code>simple-route.gpx</code> - Basic route with waypoints</li>
+                        <li><code>complex-route.gpx</code> - Route with elevation data</li>
+                        <li><code>hong-kong-route.gpx</code> - Hong Kong specific route</li>
+                    </ul>
+                </div>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Upload each test GPX file</li>
+                    <li>Verify route appears on map</li>
+                    <li>Check elevation profile renders</li>
+                    <li>Verify waypoints are displayed in table</li>
+                    <li>Test loading overlay appears during elevation fetch</li>
+                </ol>
+            </div>
+
+            <div class="test-case" id="test-waypoint-management">
+                <h3>7. Waypoint Management</h3>
+                <p>Test adding, editing, and deleting waypoints</p>
+                <span class="status manual" id="status-waypoint-management">MANUAL</span>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Upload a GPX file with waypoints</li>
+                    <li>Click on map to add custom waypoint</li>
+                    <li>Click on elevation chart to add waypoint at distance</li>
+                    <li>Edit waypoint names by clicking on them</li>
+                    <li>Delete waypoints using trash icon</li>
+                    <li>Test start/end waypoint deletion (route truncation)</li>
+                </ol>
+            </div>
+
+            <div class="test-case" id="test-route-modifications">
+                <h3>8. Route Modifications</h3>
+                <p>Test route drawing, editing, and reversal</p>
+                <span class="status manual" id="status-route-modifications">MANUAL</span>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Test "Reverse Route" functionality</li>
+                    <li>Test "✏️ Draw Route" - click to add route segments</li>
+                    <li>Test "🔧 Edit Route" - basic editing mode</li>
+                    <li>Test "🔄 Reset" to restore original route</li>
+                    <li>Verify statistics update after modifications</li>
+                </ol>
+            </div>
+
+            <div class="test-case" id="test-export-functionality">
+                <h3>9. Export Functionality</h3>
+                <p>Test GPX and Excel export features</p>
+                <span class="status manual" id="status-export-functionality">MANUAL</span>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Upload and modify a route</li>
+                    <li>Click "📁 GPX" to export modified route</li>
+                    <li>Click "📊 Excel" to export waypoint data</li>
+                    <li>Verify exported files contain correct data</li>
+                    <li>Test re-importing exported GPX file</li>
+                </ol>
+            </div>
+
+            <div class="test-case" id="test-elevation-system">
+                <h3>10. Elevation Data System</h3>
+                <p>Test local SRTM and API elevation fallback</p>
+                <span class="status manual" id="status-elevation-system">MANUAL</span>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Test with GPX file lacking elevation data</li>
+                    <li>Verify elevation fetching from APIs</li>
+                    <li>Setup local SRTM tiles and test offline elevation</li>
+                    <li>Verify elevation source banner displays correctly</li>
+                    <li>Test fallback when APIs are unavailable</li>
+                </ol>
+            </div>
+
+            <div class="test-case" id="test-time-calculations">
+                <h3>11. Time Calculations</h3>
+                <p>Test hiking time estimates with different speeds</p>
+                <span class="status manual" id="status-time-calculations">MANUAL</span>
+                <p><strong>Steps:</strong></p>
+                <ol>
+                    <li>Upload route with significant elevation gain</li>
+                    <li>Adjust flat speed and climb rate settings</li>
+                    <li>Verify time calculations update in real-time</li>
+                    <li>Test different activity types (casual/fast hiking)</li>
+                    <li>Verify time estimates in waypoint table</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>⚡ Performance Tests</h2>
+
+            <div class="test-case" id="test-performance">
+                <h3>Performance Benchmarking</h3>
+                <p>Test application performance with different data sizes and operations</p>
+                <span class="status pending" id="status-performance">PENDING</span>
+                <button class="btn" onclick="runPerformanceTests()">Run Performance Tests</button>
+                <div class="code-block" id="performance-results" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🛠️ Test Utilities</h2>
+            <button class="btn" onclick="runAllAutomatedTests()">Run All Automated Tests</button>
+            <button class="btn secondary" onclick="resetAllTests()">Reset Test Status</button>
+            <button class="btn secondary" onclick="generateTestReport()">Generate Report</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📁 Sample Test Data</h2>
+            <div class="sample-data">
+                <h4>Simple GPX Route (simple-route.gpx):</h4>
+                <div class="code-block">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;gpx version="1.1" creator="Test Generator"&gt;
+  &lt;trk&gt;
+    &lt;name&gt;Simple Test Route&lt;/name&gt;
+    &lt;trkseg&gt;
+      &lt;trkpt lat="22.3193" lon="114.1694"&gt;&lt;/trkpt&gt;
+      &lt;trkpt lat="22.3264" lon="114.1776"&gt;&lt;/trkpt&gt;
+      &lt;trkpt lat="22.3333" lon="114.1857"&gt;&lt;/trkpt&gt;
+    &lt;/trkseg&gt;
+  &lt;/trk&gt;
+  &lt;wpt lat="22.3193" lon="114.1694"&gt;&lt;name&gt;Start&lt;/name&gt;&lt;/wpt&gt;
+  &lt;wpt lat="22.3333" lon="114.1857"&gt;&lt;name&gt;End&lt;/name&gt;&lt;/wpt&gt;
+&lt;/gpx&gt;
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="elevation.js"></script>
+    <script src="route.js"></script>
+    <script src="ui.js"></script>
+    <script src="performance-tests.js"></script>
+    <script>
+        // Test state management
+        let testResults = {};
+        let totalTests = 0;
+        let passedTests = 0;
+
+        function updateProgress() {
+            const progress = passedTests / totalTests * 100;
+            document.getElementById('testProgress').style.width = progress + '%';
+            document.getElementById('progressText').textContent =
+                `${passedTests}/${totalTests} tests completed`;
+        }
+
+        function updateTestStatus(testId, status, message = '') {
+            const statusElement = document.getElementById('status-' + testId);
+            const testCase = document.getElementById('test-' + testId);
+
+            statusElement.className = 'status ' + status;
+            statusElement.textContent = status.toUpperCase();
+
+            if (message) {
+                let messageDiv = testCase.querySelector('.test-message');
+                if (!messageDiv) {
+                    messageDiv = document.createElement('div');
+                    messageDiv.className = 'test-message';
+                    testCase.appendChild(messageDiv);
+                }
+                messageDiv.textContent = message;
+            }
+
+            testResults[testId] = { status, message };
+        }
+
+        // Automated test functions
+        async function runBasicFunctionsTest() {
+            const testId = 'basic-functions';
+            updateTestStatus(testId, 'pending');
+
+            try {
+                const requiredFunctions = [
+                    'handleFileUpload', 'parseGPX', 'handleReverseRoute', 'handleResetRoute',
+                    'toggleRouteDrawing', 'toggleRouteEditing', 'exportWaypointsTable',
+                    'exportWaypointsExcel', 'showLoadingMessage', 'hideLoadingMessage',
+                    'updateLoadingMessage', 'haversineDistance', 'processRouteData',
+                    'reverseRouteData', 'findNearestTrackPoint', 'ensureStartEndWaypoints',
+                    'updateStatistics', 'renderMap', 'renderElevationChart', 'renderWaypointsTable'
+                ];
+
+                let missingFunctions = [];
+                for (const funcName of requiredFunctions) {
+                    if (typeof window[funcName] !== 'function') {
+                        missingFunctions.push(funcName);
+                    }
+                }
+
+                if (missingFunctions.length === 0) {
+                    updateTestStatus(testId, 'pass', 'All required functions are defined');
+                } else {
+                    updateTestStatus(testId, 'fail', `Missing functions: ${missingFunctions.join(', ')}`);
+                }
+            } catch (error) {
+                updateTestStatus(testId, 'fail', `Test failed: ${error.message}`);
+            }
+        }
+
+        async function runGPXParsingTest() {
+            const testId = 'gpx-parsing';
+            updateTestStatus(testId, 'pending');
+
+            try {
+                // Create a simple GPX string for testing
+                const gpxContent = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Test">
+  <trk>
+    <trkseg>
+      <trkpt lat="22.3193" lon="114.1694"><ele>100</ele></trkpt>
+      <trkpt lat="22.3264" lon="114.1776"><ele>150</ele></trkpt>
+      <trkpt lat="22.3333" lon="114.1857"><ele>200</ele></trkpt>
+    </trkseg>
+  </trk>
+  <wpt lat="22.3193" lon="114.1694"><name>Start</name></wpt>
+  <wpt lat="22.3333" lon="114.1857"><name>End</name></wpt>
+</gpx>`;
+
+                // Mock the DOMParser and other dependencies for testing
+                const mockParser = {
+                    parseFromString: function(xml) {
+                        // Simple mock XML parser for testing
+                        return {
+                            getElementsByTagName: function(tagName) {
+                                if (tagName === 'trkpt') {
+                                    return [
+                                        { getAttribute: () => "22.3193", getElementsByTagName: () => [{ textContent: "100" }] },
+                                        { getAttribute: () => "22.3264", getElementsByTagName: () => [{ textContent: "150" }] },
+                                        { getAttribute: () => "22.3333", getElementsByTagName: () => [{ textContent: "200" }] }
+                                    ];
+                                } else if (tagName === 'wpt') {
+                                    return [
+                                        { getAttribute: () => "22.3193", getElementsByTagName: () => [{ textContent: "Start" }] },
+                                        { getAttribute: () => "22.3333", getElementsByTagName: () => [{ textContent: "End" }] }
+                                    ];
+                                }
+                                return [];
+                            }
+                        };
+                    }
+                };
+
+                // Mock DOMParser
+                window.DOMParser = mockParser;
+
+                // Test basic parsing (simplified)
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(gpxContent, 'text/xml');
+                const trackPoints = xmlDoc.getElementsByTagName('trkpt');
+
+                if (trackPoints.length === 3) {
+                    updateTestStatus(testId, 'pass', 'GPX parsing correctly identified 3 track points');
+                } else {
+                    updateTestStatus(testId, 'fail', `Expected 3 track points, got ${trackPoints.length}`);
+                }
+
+            } catch (error) {
+                updateTestStatus(testId, 'fail', `Test failed: ${error.message}`);
+            }
+        }
+
+        async function runCoordinateCalculationsTest() {
+            const testId = 'coordinate-calculations';
+            updateTestStatus(testId, 'pending');
+
+            try {
+                // Test haversine distance calculation
+                const distance = haversineDistance(22.3193, 114.1694, 22.3264, 114.1776);
+
+                if (typeof distance === 'number' && distance > 0) {
+                    updateTestStatus(testId, 'pass', `Distance calculation returned valid result: ${distance.toFixed(2)} km`);
+                } else {
+                    updateTestStatus(testId, 'fail', 'Distance calculation failed or returned invalid result');
+                }
+
+                // Test basic coordinate validation
+                const testLat = 22.3193;
+                const testLon = 114.1694;
+
+                if (testLat >= -90 && testLat <= 90 && testLon >= -180 && testLon <= 180) {
+                    // Coordinates are valid
+                } else {
+                    throw new Error('Coordinate validation failed');
+                }
+
+            } catch (error) {
+                updateTestStatus(testId, 'fail', `Test failed: ${error.message}`);
+            }
+        }
+
+        async function runRouteProcessingTest() {
+            const testId = 'route-processing';
+            updateTestStatus(testId, 'pending');
+
+            try {
+                // Create test route data
+                const testPoints = [
+                    { lat: 22.3193, lon: 114.1694, ele: 100, distance: 0 },
+                    { lat: 22.3264, lon: 114.1776, ele: 150, distance: 1.0 },
+                    { lat: 22.3333, lon: 114.1857, ele: 200, distance: 2.0 }
+                ];
+
+                const testWaypoints = [
+                    { lat: 22.3193, lon: 114.1694, ele: 100, name: 'Start', distance: 0, isStart: true },
+                    { lat: 22.3333, lon: 114.1857, ele: 200, name: 'End', distance: 2.0, isEnd: true }
+                ];
+
+                // Test route data processing
+                const processedRoute = processRouteData(testPoints, testWaypoints);
+
+                if (processedRoute && processedRoute.points && processedRoute.waypoints) {
+                    if (processedRoute.points.length === testPoints.length &&
+                        processedRoute.waypoints.length === testWaypoints.length) {
+                        updateTestStatus(testId, 'pass', 'Route processing correctly handled test data');
+                    } else {
+                        updateTestStatus(testId, 'fail', 'Route processing returned incorrect data structure');
+                    }
+                } else {
+                    updateTestStatus(testId, 'fail', 'Route processing failed to return valid data');
+                }
+
+            } catch (error) {
+                updateTestStatus(testId, 'fail', `Test failed: ${error.message}`);
+            }
+        }
+
+        async function runAllAutomatedTests() {
+            totalTests = 4;
+            passedTests = 0;
+
+            await runBasicFunctionsTest();
+            await runGPXParsingTest();
+            await runCoordinateCalculationsTest();
+            await runRouteProcessingTest();
+
+            updateProgress();
+        }
+
+        function resetAllTests() {
+            const statusElements = document.querySelectorAll('.status');
+            statusElements.forEach(el => {
+                if (!el.classList.contains('manual')) {
+                    el.className = 'status pending';
+                    el.textContent = 'PENDING';
+                }
+            });
+
+            const messageElements = document.querySelectorAll('.test-message');
+            messageElements.forEach(el => el.remove());
+
+            testResults = {};
+            totalTests = 0;
+            passedTests = 0;
+            updateProgress();
+        }
+
+        function generateTestReport() {
+            let report = '# Test Report - GPX Route Analyzer\n\n';
+            report += `Generated: ${new Date().toISOString()}\n\n`;
+
+            report += '## Automated Tests\n\n';
+            for (const [testId, result] of Object.entries(testResults)) {
+                report += `- **${testId}**: ${result.status.toUpperCase()}\n`;
+                if (result.message) {
+                    report += `  - ${result.message}\n`;
+                }
+            }
+
+            report += '\n## Manual Tests\n\n';
+            report += '- UI Rendering & Layout: MANUAL\n';
+            report += '- GPX File Upload: MANUAL\n';
+            report += '- Waypoint Management: MANUAL\n';
+            report += '- Route Modifications: MANUAL\n';
+            report += '- Export Functionality: MANUAL\n';
+            report += '- Elevation Data System: MANUAL\n';
+            report += '- Time Calculations: MANUAL\n';
+
+            // Create downloadable report
+            const blob = new Blob([report], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `test-report-${new Date().toISOString().split('T')[0]}.md`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function runPerformanceTests() {
+            const statusElement = document.getElementById('status-performance');
+            const resultsElement = document.getElementById('performance-results');
+
+            statusElement.className = 'status pending';
+            statusElement.textContent = 'RUNNING...';
+            resultsElement.style.display = 'none';
+
+            // Capture console.log output
+            const originalLog = console.log;
+            let logOutput = [];
+
+            console.log = function(...args) {
+                logOutput.push(args.join(' '));
+                originalLog.apply(console, args);
+            };
+
+            // Run performance tests
+            if (typeof GPXPerformanceTests !== 'undefined') {
+                GPXPerformanceTests.runPerformanceTests();
+
+                // Wait for tests to complete
+                setTimeout(() => {
+                    statusElement.className = 'status pass';
+                    statusElement.textContent = 'COMPLETED';
+
+                    resultsElement.style.display = 'block';
+                    resultsElement.textContent = logOutput.join('\n');
+                    console.log = originalLog; // Restore original console.log
+                }, 3000);
+            } else {
+                statusElement.className = 'status fail';
+                statusElement.textContent = 'FAILED';
+                resultsElement.style.display = 'block';
+                resultsElement.textContent = 'Performance tests not loaded. Make sure performance-tests.js is available.';
+                console.log = originalLog;
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

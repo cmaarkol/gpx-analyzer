@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="GPX Route Analyzer Test Suite">
+  <metadata>
+    <name>No Elevation Route</name>
+    <desc>A route without elevation data to test elevation fetching</desc>
+    <time>2025-01-01T12:00:00Z</time>
+  </metadata>
+
+  <trk>
+    <name>No Elevation Track</name>
+    <desc>Route track without elevation data</desc>
+    <trkseg>
+      <trkpt lat="22.3020" lon="114.1820">
+        <time>2025-01-01T12:00:00Z</time>
+      </trkpt>
+      <trkpt lat="22.3040" lon="114.1840">
+        <time>2025-01-01T12:02:00Z</time>
+      </trkpt>
+      <trkpt lat="22.3060" lon="114.1860">
+        <time>2025-01-01T12:04:00Z</time>
+      </trkpt>
+      <trkpt lat="22.3080" lon="114.1880">
+        <time>2025-01-01T12:06:00Z</time>
+      </trkpt>
+      <trkpt lat="22.3100" lon="114.1900">
+        <time>2025-01-01T12:08:00Z</time>
+      </trkpt>
+      <trkpt lat="22.3120" lon="114.1920">
+        <time>2025-01-01T12:10:00Z</time>
+      </trkpt>
+      <trkpt lat="22.3140" lon="114.1940">
+        <time>2025-01-01T12:12:00Z</time>
+      </trkpt>
+      <trkpt lat="22.3160" lon="114.1960">
+        <time>2025-01-01T12:14:00Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+
+  <wpt lat="22.3020" lon="114.1820">
+    <name>Start - No Elevation</name>
+    <desc>Starting point without elevation</desc>
+    <type>Start</type>
+  </wpt>
+
+  <wpt lat="22.3160" lon="114.1960">
+    <name>End - No Elevation</name>
+    <desc>Ending point without elevation</desc>
+    <type>End</type>
+  </wpt>
+</gpx>
